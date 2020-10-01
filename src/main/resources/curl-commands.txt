@@ -1,0 +1,11 @@
+# Add new Employee:
+curl -i -H "Content-Type: application/json" -X POST -d '{
+        "firstName": "Harry",
+        "lastName":"Potter",
+        "eMail":"h.potter@hogwarts.com",
+        "salary":"9001"
+    }' localhost:8080/addEmployee
+}
+
+# List All Employees:
+curl -i -H "Content-Type: application/json" -X GET localhost:8080/employees

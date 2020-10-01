@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">My Employee App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" />
+</head>
+<body>
+<nav th:fragment="navigation">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="/" class="btn btn-info">Overview</a>
+        <a href="/add" class="btn btn-success">Add Employee</a>
+        <a href="/remove" class="btn btn-danger">Remove Employee</a>
+        <a href="/employees" class="btn btn-secondary">Rest Employee</a>
+    </div>
+</nav>
+<h4 th:fragment="nameH4">Employee CMS</h4>
+<h5 th:fragment="nameH5">Spring CRUD + Thymleaf Sample</h5>
+
+</body>
+</html>

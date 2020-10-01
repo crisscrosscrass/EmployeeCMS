@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="template :: head"></head>
+<body>
+<nav th:replace="template :: navigation"></nav>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Add a Employee to your List</h5>
+        <a href="/" class="card-link">Back to Overview</a>
+    </div>
+</div>
+<div class="container">
+    <form action="#" th:action="@{/save}" th:object="${employee}" method="post">
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{firstName}" /></td>
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">firstName Error</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{lastName}" /></td>
+                <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName Error</td>
+            </tr>
+            <tr>
+                <td>eMail:</td>
+                <td><input type="text" th:field="*{eMail}" /></td>
+                <td th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}">eMail Error</td>
+            </tr>
+            <tr>
+                <td>Salary:</td>
+                <td><input type="text" th:field="*{salary}" /></td>
+                <td th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">salary Error</td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

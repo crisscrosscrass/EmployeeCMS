@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="template :: head"></head>
+<body>
+<nav th:replace="template :: navigation"></nav>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Remove a Employee from your List</h5>
+        <a href="/" class="card-link">Back to Overview</a>
+    </div>
+</div>
+<p class="container" th:unless="${myEmployeeList} and ${myEmployeeList.size()}">No Employee Data available...you can add them via "Add Employee"</p>
+<div class="container">
+    <form method="post" action="/delete">
+        <table class="table container" th:if="${myEmployeeList.size() > 0}">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>email</th>
+                <th>Salary</th>
+                <th colspan="3">select</th>
+            </tr>
+        <tr th:each="employee : ${myEmployeeList}" class="checkbox">
+            <td th:text="${employee.employeeId}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.eMail}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td><input type="checkbox" name="employeeIds" th:value="${employee.employeeId}" id="${employee.employeeId}"></td>
+        </tr>
+        </table>
+        <input type="submit" value="Delete" class="btn btn-outline-danger" th:if="${myEmployeeList.size() > 0}">
+    </form>
+</div>
+</body>
+</html>

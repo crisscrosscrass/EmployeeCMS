@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: head"></head>
+<body>
+<nav th:replace="template :: navigation"></nav>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" th:replace="template :: nameH4">Default title</h4>
+        <h5 class="card-title" th:replace="template :: nameH5">Default title</h5>
+    </div>
+</div>
+<!--p class="container" th:text="'Hello, ' + ${name} + '!'" /-->
+
+<p class="container" th:unless="${myEmployeeList} and ${myEmployeeList.size()}">No Employee Data available...you can add them via "Add Employee"</p>
+<table class="table container" th:if="${myEmployeeList.size() > 0}">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>email</th>
+        <th>Salary</th>
+        <th colspan="3">Actions</th>
+    </tr>
+    <tr th:each="employee : ${myEmployeeList}">
+        <td th:text="${employee.employeeId}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.eMail}"></td>
+        <td>***</td>
+        <form action="#" th:action="@{/deleteEmployee(employeeId=${employee.employeeId})}" method="post">
+            <td>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </td>
+        </form>
+        <form action="#" th:action="@{/detail(employeeId=${employee.employeeId})}" th:object="${myEmployeeList}" method="post">
+            <td>
+            <input name="employeeId" th:value="${employee.employeeId}" type="hidden"/><button type="submit" class="btn btn-info" name="action" value="remove">Details</button>
+            </td>
+        </form>
+        <form action="#" th:action="@{/update(employeeId=${employee.employeeId})}" method="post">
+            <td>
+                <button type="submit" class="btn btn-info">Update</button>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<!--a href="/" class="btn btn-info">Overview</a>
+<a href="/add" class="btn btn-success">Add Employee</a>
+<a href="/remove" class="btn btn-danger">Remove Employee</a>
+<a href="/update" class="btn btn-danger">Update Employee</a>
+<a href="/delete" class="btn btn-danger">Delete Employee</a-->
+</body>
+</html>
