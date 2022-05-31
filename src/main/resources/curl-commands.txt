@@ -9,3 +9,6 @@ curl -i -H "Content-Type: application/json" -X POST -d '{
 
 # List All Employees:
 curl -i -H "Content-Type: application/json" -X GET localhost:8080/employees
+
+#Add new Employee on heroku demo app via proxy:
+curl -ksl 'https://employeecmsdemo.herokuapp.com/addEmployee' -x 'http://proxy.clust:3128/' -i -H 'Content-Type: application/json' -d '{ \"firstName\":\"Harry\",   \"lastName\":\"Potter\",   \"eMail\":\"h.potter@hogwarts.com\",   \"salary\":\"9001\"}'
