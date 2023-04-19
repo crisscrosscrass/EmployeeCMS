@@ -3,6 +3,9 @@ package com.crisscrosscrass.EmployeeCMS.models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.crisscrosscrass.EmployeeCMS.factory.JdbcEmployeeDao;
+import com.crisscrosscrass.EmployeeCMS.service.DatabaseConnection;
+
 public class EmployeeData {
     static ArrayList<Employee> myEmployeeList = new ArrayList<>();
     public static ArrayList<Employee> getMyEmployeeList() {
@@ -12,6 +15,9 @@ public class EmployeeData {
         myEmployeeList.add(employee);
         // Sort List by ID could be also written as myEmployeeList.sort(Comparator.comparingInt(Employee::getEmployeeId));
         Collections.sort(myEmployeeList, (e1, e2) -> Integer.valueOf(e1.getEmployeeId()).compareTo(e2.getEmployeeId()));
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        EmployeeDao employeeDao = new JdbcEmployeeDao(databaseConnection.getConnection());
+        employeeDao.addEmployee(employee);
     }
     public static void remove(int id){
         Employee employeeToRemove = getById(id);
